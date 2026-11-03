@@ -1,0 +1,76 @@
+<div class="mainContent">
+  <h1 class="title">Estastísticas dos Personagens dentro do Jogo</h1>
+  <div class="tableContent">
+    <p-table
+      [value]="champion"
+      [tableStyle]="{ 'min-width': '50rem' }"
+      class="tabelaStats"
+      styleClass="p-datatable-gridlines"
+    >
+      styleClass="p-datatable-gridlines" >
+      <ng-template pTemplate="header">
+        <tr>
+          <th>Champion Name</th>
+          <th>Win Rate</th>
+          <th>Pick Rate</th>
+          <th>Ban Rate</th>
+          <th>Role</th>
+        </tr>
+      </ng-template>
+      <ng-template pTemplate="body" let-champion>
+        <tr>
+          <td>{{ champion.name }}</td>
+          <td>{{ champion.winRate }}%</td>
+          <td>{{ champion.pickRate }}%</td>
+          <td>{{ champion.banRate }}%</td>
+          <td>{{ champion.role }}</td>
+        </tr>
+      </ng-template>
+      <ng-template pTemplate="summary">
+        <div class="footer-table">
+          {{ champion ? champion.length : 0 }} Personagens Registrados.
+        </div>
+      </ng-template>
+    </p-table>
+  </div>
+  <div class="form">
+    <h2 class="tituloForm">Registre um novo campeão</h2>
+    <p-cascadeSelect
+      [(ngModel)]="regiaoSelecionada"
+      [options]="regioes"
+      optionLabel="nomeCampeao"
+      optionGroupLabel="nome"
+      [optionGroupChildren]="['campeoes']"
+      [style]="{ minWidth: '14rem' }"
+      placeholder="Selecione a região do campeão"
+      class="cascadeForm inputs"
+    ></p-cascadeSelect>
+    <p-dropdown
+      [options]="opcoesRoles"
+      [(ngModel)]="roleSelecionada"
+      optionLabel="role"
+      placeholder="Selecione uma role"
+      class="inputs"
+    ></p-dropdown>
+    <p-inputNumber
+      mask="00.0"
+      placeholder="Win Rate do Personagem"
+      [(ngModel)]="numeroWinrate"
+      class="inputs"
+      prefix="%"
+    />
+    <p-inputNumber
+      placeholder="Ban Rate do Personagem"
+      [(ngModel)]="numeroBanRate"
+      class="inputs"
+      prefix="%"
+    />
+    <p-inputNumber
+      placeholder="Pick Rate do Personagem"
+      [(ngModel)]="numeroPickRate"
+      class="inputs"
+      prefix="%"
+    />
+    <p-button id="button2" label="Cadastrar" (click)="resetar()"></p-button>
+  </div>
+</div>

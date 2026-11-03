@@ -1,0 +1,9 @@
+services:
+  league-characters:
+    image: ghcr.io/tat-2026-coolify/vi_nogueira:latest
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "8080:80"
+    restart: unless-stopped
